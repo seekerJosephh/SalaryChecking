@@ -1,0 +1,202 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Noto Sans Khmer', 'Khmer OS', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #555;
+}
+.head1 span{
+    font-size: 48px !important;
+    font-weight: 800 !important;
+}
+
+.card .card-header .h1 {
+    font-size: 48px !important;
+    font-weight: 800;
+
+}
+
+.header {
+    background-color: #198754; 
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.header1 h4{
+    font-family: "MoolBoran", sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #555;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+}
+.header h4 {
+    font-family: 'Noto Sans Khmer', sans-serif;
+    font-weight: 600;
+}
+.employee-info {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px !important;
+}
+.txt {
+    color: #af48af;
+}
+.row{
+    margin-right: 0!important;
+    margin-left:  0!important;
+}
+.employee-info strong {
+    font-family: 'Noto Sans Khmer', sans-serif;
+    font-weight: 600;
+}
+.employee-info, .employee-info * {
+    font-family: 'Noto Sans Khmer', sans-serif;
+}
+.ot-table th {
+    background-color: #198754;
+    color: white;
+}
+.ot-table th, .ot-table td {
+    font-family: 'Noto Sans Khmer', sans-serif;
+}
+.ot-table td {
+    vertical-align: middle;
+}
+.section-divider {
+    margin-top: 30px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: none;
+}
+.table-responsive .table-striped tbody tr td span p .res{
+    color: red !important;
+    text-align: center;
+}
+
+body {
+    direction: ltr;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .employee-info .col-md-4 {
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 412px) {
+    .container .card .header1 h4 {
+        font-size: 2rem;
+        font-weight: 800;
+    }
+    .table-responsive .table .res{
+        width: 100%;
+    }
+    .table-responsive .table tr td span .fon{
+        font-size: 12px;
+    }
+}
+
+
+
+@media screen and (max-width: 450px) {
+    body {
+        font-size: 12px; 
+    }
+    .head1 h4 {
+        font-size: 20px !important;
+    }
+
+    .card-header h4 {
+        font-size: 1.2rem; 
+    }
+
+    .employee-info strong,
+    .employee-info span,
+    .ot-table td {
+        font-size: 12px; 
+    }
+
+    .header h4 {
+        font-size: 1.1rem; 
+    }
+
+  
+    .table-responsive {
+        font-size: 0.85rem; 
+    }
+
+  
+    .card-body {
+        padding: 1rem;
+    }
+
+
+  
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .card-body {
+        display: flex;
+    }
+    .table>:not(caption)>*>* {
+        padding: none !important;
+    }
+    p {
+        justify-content: center;
+        text-align: center;
+        overflow: auto;
+    }
+    table {
+        padding: none !important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    body {
+        font-size: 12px; 
+    }
+
+    .card-header h4 {
+        font-size: 1.2rem; 
+    }
+
+    .employee-info strong,
+    .employee-info span,
+    .ot-table td {
+        font-size: 10px; 
+    }
+
+    .header h4 {
+        font-size: 1rem; 
+    }
+
+  
+    .table-responsive {
+        font-size: 0.85rem; 
+    }
+
+  
+    .card-body {
+        padding: 1rem;
+    }
+
+
+  
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        
+    }
+}
