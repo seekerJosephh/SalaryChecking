@@ -403,7 +403,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'download_pdf') {
         </div>
         <div class="mt-3 text-end">
             <a href="?action=download_pdf&enc=<?php echo urlencode($enc); ?>" class="btn btn-success me-2">ទាញយកជា PDF</a>
-            <button onclick="captureWebPageAsImage('capture-area')" class="btn btn-success">ទាញយកជារូបភាព</button>
+            <button onclick="captureFullScreenWebPage() ;" class="btn btn-success">ទាញយកជារូបភាព</button>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -429,35 +429,42 @@ if (isset($_GET['action']) && $_GET['action'] === 'download_pdf') {
     //         downloadImage();
     //     };
     
-    // Function to capture a webpage or specific element as an image
-function captureWebPageAsImage(elementId) {
-    // Ensure html2canvas is loaded
+    // Function to capture a webpage 
+
+function captureFullScreenWebPage() {
     if (typeof html2canvas === 'undefined') {
         console.error('html2canvas library is required. Please include it in your project.');
         return;
     }
 
-    // Select the element to capture
-    const element = document.getElementById(elementId);
-    if (!element) {
-        console.error('Element with the specified ID not found.');
-        return;
-    }
+    // Target the full document body
+    const element = document.body;
 
-    // Use html2canvas to capture the element
-    html2canvas(element).then(canvas => {
-        // Convert the canvas to an image
+    // Ensure full width and height are captured
+    html2canvas(element, {
+        width: 1080, 
+        height: 1920, 
+        windowWidth: 1080,
+        windowHeight: 1920,
+        scrollX: 0,
+        scrollY: 0,
+        useCORS: true,
+        scale: window.devicePixelRatio 
+    }).then(canvas => {
         const image = canvas.toDataURL('image/png');
 
-        // Create a download link
         const link = document.createElement('a');
         link.href = image;
-        link.download = 'webpage-capture.png';
+        link.download = 'fullpage-capture.png';
+        document.body.appendChild(link); // required for mobile Safari
         link.click();
+        document.body.removeChild(link);
     }).catch(error => {
-        console.error('Error capturing the webpage:', error);
+        console.error('Error capturing the full screen:', error);
     });
 }
+
+
     </script>
 </body>
 </html>
