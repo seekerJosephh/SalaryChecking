@@ -1,6 +1,6 @@
 <?php
 // public/index.php
-require_once __DIR__ . '/../vendor/autoload.php';
+// require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../includes/encryption.php';
 require_once __DIR__ . '/../config/config.php';
 
@@ -138,40 +138,40 @@ if ($enc) {
 } else {
     // Use mock data only if no enc parameter is provided
     $employee_data = [
-        'Emp_ID' => '12345',
-        'KhmerName' => 'សុខ ស៊ីណា',
-        'SalaryDTKH' => 'ខែ មករា ២០២៥',
-        'Basic' => 300.30,
-        'Total_Normal_OT' => 10,
-        'Normal_Amount' => 50,
-        'Aft_Night_OT' => 5,
-        'OT_Aft_Night' => 30,
-        'Holiday_Normal_OT' => 8,
-        'Total_HOT' => 48,
-        'Night_Wage' => 20,
-        'Alw_Att' => 10,
-        'Alw_Housing' => 50,
-        'Alw_GSTARS' => 15,
-        'Alw_License' => 25,
-        'Alw_Position' => 30,
-        'Alw_Additional' => 10,
-        'Seniority' => 20,
-        'SaleAL' => 15,
-        'Adjust' => 5,
-        'Total_1' => 568,
-        'Abs_Day' => 1,      
-        'Abs_AL' => 2,
-        'Abs_SL' => 4,
-        'Abs_SP' => 5,
-        'Abs_UP' => 4,
-        'Abs_A' => 2,
-        'Abs_Unpaid' => 4,   
-        'Abs_Amount' => 20,
-        'Alw_KHNY' => 100,
-        'Advance' => 200,
-        'Deduct' => 10,
-        'Pension' => 15,
-        'Total_2' => 423
+        'Emp_ID' => '',
+        'KhmerName' => '',
+        'SalaryDTKH' => '',
+        'Basic' => 0.00,
+        'Total_Normal_OT' => 0.00,
+        'Normal_Amount' => 31.5,
+        'Aft_Night_OT' => 31.5,
+        'OT_Aft_Night' => 0.00,
+        'Holiday_Normal_OT' => 0.00,
+        'Total_HOT' => 0.00,
+        'Night_Wage' => 0.00,
+        'Alw_Att' => 0.00,
+        'Alw_Housing' => 0.00,
+        'Alw_GSTARS' => 0.00,
+        'Alw_License' => 0.00,
+        'Alw_Position' => 0.00,
+        'Alw_Additional' => 0.00,
+        'Seniority' => 0.00,
+        'SaleAL' => 0.00,
+        'Adjust' => 0.00,
+        'Total_1' => 0.00,
+        'Abs_Day' => 0.00,        
+        'Abs_AL' => 0.00,
+        'Abs_SL' => 0.00,
+        'Abs_SP' => 0.00,
+        'Abs_UP' => 0.00,
+        'Abs_A' => 0.00,
+        'Abs_Unpaid' => 0.00,     
+        'Abs_Amount' => 0.00,
+        'Alw_KHNY' => 0.00,
+        'Advance' => 0.00,
+        'Deduct' => 0.00,
+        'Pension' => 0.00,
+        'Total_2' => 0.00
     ];
 }
 
@@ -193,10 +193,11 @@ if (isset($_GET['action']) && $_GET['action'] === 'download_pdf') {
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Khmer&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
 </head>
 <body>
-    <div class="container my-5">
+    <div class="container my-5" id="capture-area">
         <div class="card" id="salaryCard">
             <div class="  card-header text-center">
                 <h1 style="font-weight: 800; font-size: 40px" class="mb-0">ព័ត៌មានប្រាក់បៀវត្សន៍</h1>
@@ -226,7 +227,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'download_pdf') {
                                 <tbody>
                                     <tr>
                                         <td></td>
-                                        <td style="font-weight: bold; text-align: right;">ថែមម៉ោង៖</td>
+                                        <td class="align">ថែមម៉ោង៖</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -234,7 +235,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'download_pdf') {
                                     </tr>
                                     <tr>
                                         <td class="disable"></td>
-                                        <td style="text-align: right; width: 266.844px;">ពេលថ្ងៃ៖&nbsp;&nbsp;<?php echo number_format($employee_data['Total_Normal_OT']); ?>&nbsp;ម៉ោង</td>
+                                        <td style="text-align: right; width: 266.844px;">ពេលថ្ងៃ៖&nbsp;&nbsp;<?php echo number_format($employee_data['Total_Normal_OT'],1); ?>&nbsp;ម៉ោង</td>
                                         <td></td>
                                         <td></td>
                                         <td style="text-align: right; width: 466.844px;">ចំនួនទឹកប្រាក់៖</td>
@@ -242,7 +243,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'download_pdf') {
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td style="text-align: right;">ពេលយប់៖&nbsp;&nbsp;<?php echo number_format($employee_data['Aft_Night_OT']); ?>&nbsp;ម៉ោង</td>
+                                        <td style="text-align: right;">ពេលយប់៖&nbsp;&nbsp;<?php echo number_format($employee_data['Aft_Night_OT'], 1); ?>&nbsp;ម៉ោង</td>
                                         <td></td>
                                         <td></td>
                                         <td style="text-align: right; width: 466.844px;">ចំនួនទឹកប្រាក់៖</td>
@@ -402,31 +403,61 @@ if (isset($_GET['action']) && $_GET['action'] === 'download_pdf') {
         </div>
         <div class="mt-3 text-end">
             <a href="?action=download_pdf&enc=<?php echo urlencode($enc); ?>" class="btn btn-success me-2">ទាញយកជា PDF</a>
-            <button onclick="downloadImage()" class="btn btn-success">ទាញយកជារូបភាព</button>
+            <button onclick="captureWebPageAsImage('capture-area')" class="btn btn-success">ទាញយកជារូបភាព</button>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-    function downloadImage() {
+    // function downloadImage() {
 
-        window.scrollTo(0, 0);
+    //     window.scrollTo(0, 0);
 
-        html2canvas(document.body, {
-            scale: 2, 
-            useCORS: true,
-        }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'salary_slip.png';
-            link.href = canvas.toDataURL('image/png');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);3
-        });
+    //     html2canvas(document.body, {
+    //         scale: 2, 
+    //         useCORS: true,
+    //     }).then(canvas => {
+    //         const link = document.createElement('a');
+    //         link.download = 'salary_slip.png';
+    //         link.href = canvas.toDataURL('image/png');
+    //         document.body.appendChild(link);
+    //         link.click();
+    //         document.body.removeChild(link);3
+    //     });
+    // }
+    // window.onload = function() {
+    //         downloadImage();
+    //     };
+    
+    // Function to capture a webpage or specific element as an image
+function captureWebPageAsImage(elementId) {
+    // Ensure html2canvas is loaded
+    if (typeof html2canvas === 'undefined') {
+        console.error('html2canvas library is required. Please include it in your project.');
+        return;
     }
-        // window.onload = function() {
-        //       downloadImage();
-        // };
+
+    // Select the element to capture
+    const element = document.getElementById(elementId);
+    if (!element) {
+        console.error('Element with the specified ID not found.');
+        return;
+    }
+
+    // Use html2canvas to capture the element
+    html2canvas(element).then(canvas => {
+        // Convert the canvas to an image
+        const image = canvas.toDataURL('image/png');
+
+        // Create a download link
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'webpage-capture.png';
+        link.click();
+    }).catch(error => {
+        console.error('Error capturing the webpage:', error);
+    });
+}
     </script>
 </body>
 </html>
