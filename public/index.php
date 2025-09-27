@@ -437,10 +437,10 @@ function captureFullScreenWebPage() {
         return;
     }
 
-    // Target the full document body
+    
     const element = document.body;
 
-    // Ensure full width and height are captured
+    
     html2canvas(element, {
         width: 1080, 
         height: 1920, 
